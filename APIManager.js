@@ -30,6 +30,8 @@ class APIManager {
                     .filter((element, index) => {
                         return index > 0
                     })
+
+                this.data.mainUser = this.data.users[0]
                     // TODO: ADD MAP HERE
 
         })

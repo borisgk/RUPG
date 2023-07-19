@@ -1,9 +1,25 @@
 
 class Renderer {
+
+    /* Newer optimized render method */
+    advancedRender(data) {
+        const renderTemplates = ["user", "quote", "pokemon", "friends", "meat"]
+
+        for (let renderTemplate of renderTemplates) {
+            let source = $(`#${renderTemplate}-template`).html()
+            let template = Handlebars.compile(source)
+            let myHTML = template(data)
+
+            $(`.${renderTemplate}-container`).empty()
+            $(`.${renderTemplate}-container`).append(myHTML)            
+        }
+    }
+    
+    /* This one is deprecated as suboptimal */
     render(data) {
         const userSource = $('#user-template').html()
         const userTemplate = Handlebars.compile(userSource)
-        let userHTML = userTemplate(data.users[0])
+        let userHTML = userTemplate(data)
 
         $(".user-container").empty()
         $(".user-container").append(userHTML)
@@ -35,9 +51,8 @@ class Renderer {
 
         $(".meat-container").empty()
         $(".meat-container").append(meatHTML)
-
-
     }
+
 }
 
 Handlebars.registerHelper('properCase', function (aString) {
