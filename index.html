@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
 
 <body>
@@ -19,16 +20,58 @@
             <div class="pokemon-container"></div>	
             <div class="meat-container"></div>	
         </div>	
-        <div class="friends">	
-            <h4>Friends</h4>	
-            <div class="friends-container">	
+        <div class="friends">
+            <h4>Friends</h4> 	
+            <div class="friends-container">
+                
             </div>	
         </div>	
         <div class="buttons">	
-            <button>Load User Data</button>	
-            <button>Display User</button>	
+            <button id="generate">Generate User</button>	
         </div>	
     </div>
+
+    <script src="APIManager.js"></script>
+    <script src="main.js"></script>
+    <script src="Renderer.js"></script>
+
+    <!-- HANDLEBAR TEMPLATES -->
+
+    <!-- MAIN USER -->
+    <script id="user-template" type="text/x-handlebars-template">
+            <img id="profile-pic" src="{{picture.large}}">
+            <div class="user-info">{{name.first}} {{name.last}}<br>{{location.city}}, {{location.state}}</div>
+    </script>
+
+    <!-- QUOTE -->
+    <script id="quote-template" type="text/x-handlebars-template">
+        <p>Favorite quote:</p>
+        {{quote}}
+    </script>
+
+    <!-- POKEMON -->
+    <script id="pokemon-template" type="text/x-handlebars-template">
+        <img src="{{pokemon.sprites.front_default}}" class="pokemon-image">
+        <p class="pokemon-text">Favorite pokemon: {{properCase pokemon.name}}</p>
+    </script>
+
+    <!-- FRIENDS -->
+    <script id="friends-template" type="text/x-handlebars-template">
+        {{#each friends}}
+        <div>{{this.name.first}} {{this.name.last}}</div>
+        {{/each}}
+    </script>
+
+    <!-- BACON -->
+    <script id="meat-template" type="text/x-handlebars-template">
+        <p class="meat-text">About me</p>
+        <p class="meat-text">{{bacon}}</p>
+    </script>
+
+
+      
+
+
 </body>
 
 </html>
