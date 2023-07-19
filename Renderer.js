@@ -1,17 +1,24 @@
 
 class Renderer {
 
-    /* Newer optimized render method */
-    advancedRender(data) {
-        const renderTemplates = ["user", "quote", "pokemon", "friends", "meat"]
+    renderTemplates = ["user", "quote", "pokemon", "friends", "meat"]
+    compiledTemplates = []
 
-        for (let renderTemplate of renderTemplates) {
+    constructor () {
+        for (let renderTemplate of this.renderTemplates) {
             let source = $(`#${renderTemplate}-template`).html()
             let template = Handlebars.compile(source)
-            let myHTML = template(data)
+            this.compiledTemplates.push({"name": renderTemplate, "template": template})
+        }
+    }
 
-            $(`.${renderTemplate}-container`).empty()
-            $(`.${renderTemplate}-container`).append(myHTML)            
+    /* Newer optimized render method */
+    advancedRender(data) {
+        for (let template of this.compiledTemplates) {
+            let myHTML = template.template(data)
+            let container = $(`.${template.name}-container`)
+            container.empty()
+            container.append(myHTML)            
         }
     }
     
