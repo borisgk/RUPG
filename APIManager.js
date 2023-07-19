@@ -3,7 +3,9 @@
 class APIManager {
     
     constructor() {
-        this.data = {}
+        this.data = new Object
+        this.data.mainUser = new Object
+        this.data.pokemon = new Object
     }
 
     callAPIs() {
@@ -15,25 +17,62 @@ class APIManager {
         return Promise.all([promiseUsers, promiseQuote, promisePokemon, promiseBacon])
     }
 
+
+    /* Data Structure
+
+    data: {
+        mainUser: {
+            picture,
+            firstName,
+            lastName,
+            city,
+            state
+        },
+        friends: [
+            {
+                firstName,
+                lastName
+            }
+        ],
+        quote: // string
+        pokemon: {
+            image,
+            name
+        },
+        meat: // string
+    }
+    */
+
+
     fetchData() {
         return this.callAPIs().then((values) => {
-                // add users
-                this.data.users = values[0].results
-                // add quote
-                this.data.quote = values[1].quote
-                // add pokemon
-                this.data.pokemon = values[2]
-                // add bacon
-                this.data.bacon = values[3][0]
+            // main user
+            this.data.mainUser.picture = values[0].results[0].picture.large
+            this.data.mainUser.firstName = values[0].results[0].name.first
+            this.data.mainUser.lastName = values[0].results[0].name.last
+            this.data.mainUser.city = values[0].results[0].location.city
+            this.data.mainUser.state = values[0].results[0].location.state
+    
+            // friends
+            this.data.friends = values[0].results
+            .filter((element, index) => {
+                return index > 0
+            })
+            .map((element, index) => {
+                return { "firstName": element.name.first, "lastName": element.name.last}
+            })
 
-                this.data.friends = this.data.users
-                    .filter((element, index) => {
-                        return index > 0
-                    })
+            // quote
+            this.data.quote = values[1].quote
+                
+            // pokemon
+            this.data.pokemon.image = values[2].sprites.front_default
+            this.data.pokemon.name = values[2].name
+                
+            // meat
+            this.data.meat = values[3][0]
 
-                this.data.mainUser = this.data.users[0]
-                    // TODO: ADD MAP HERE
-
+            
         })
     }
 }

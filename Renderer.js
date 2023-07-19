@@ -8,6 +8,7 @@ class Renderer {
         for (let renderTemplate of this.renderTemplates) {
             let source = $(`#${renderTemplate}-template`).html()
             let template = Handlebars.compile(source)
+            // store compiled templates in an array as objects with name and the template itself
             this.compiledTemplates.push({"name": renderTemplate, "template": template})
         }
     }
@@ -22,7 +23,7 @@ class Renderer {
         }
     }
     
-    /* This one is deprecated as suboptimal */
+    /* This one is deprecated as suboptimal, not called anymore */
     render(data) {
         const userSource = $('#user-template').html()
         const userTemplate = Handlebars.compile(userSource)

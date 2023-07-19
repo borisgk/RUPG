@@ -39,8 +39,8 @@
 
     <!-- MAIN USER -->
     <script id="user-template" type="text/x-handlebars-template">
-            <img id="profile-pic" src="{{mainUser.picture.large}}">
-            <div class="user-info">{{mainUser.name.first}} {{mainUser.name.last}}<br>{{mainUser.location.city}}, {{mainUser.location.state}}</div>
+            <img id="profile-pic" src="{{mainUser.picture}}">
+            <div class="user-info">{{mainUser.firstName}} {{mainUser.lastName}}<br>{{mainUser.city}}, {{mainUser.state}}</div>
     </script>
 
     <!-- QUOTE -->
@@ -51,21 +51,21 @@
 
     <!-- POKEMON -->
     <script id="pokemon-template" type="text/x-handlebars-template">
-        <img src="{{pokemon.sprites.front_default}}" class="pokemon-image">
+        <img src="{{pokemon.image}}" class="pokemon-image">
         <p class="pokemon-text">Favorite pokemon: {{properCase pokemon.name}}</p>
     </script>
 
     <!-- FRIENDS -->
     <script id="friends-template" type="text/x-handlebars-template">
-        {{#each friends}}
-        <div>{{this.name.first}} {{this.name.last}}</div>
-        {{/each}}
+            {{#each friends}}
+                <div>{{this.firstName}} {{this.lastName}}</div>
+            {{/each}}
     </script>
 
     <!-- BACON -->
     <script id="meat-template" type="text/x-handlebars-template">
         <p class="meat-text">About me</p>
-        <p class="meat-text">{{bacon}}</p>
+        <p class="meat-text">{{meat}}</p>
     </script>
 
 
