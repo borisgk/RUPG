@@ -17,7 +17,6 @@ class APIManager {
 
     fetchData() {
         return this.callAPIs().then((values) => {
-                console.log(values)
                 // add users
                 this.data.users = values[0].results
                 // add quote
