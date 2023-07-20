@@ -1,7 +1,7 @@
 
 class Renderer {
 
-    renderTemplates = ["user", "quote", "pokemon", "friends", "meat"]
+    renderTemplates = ["user", "quote", "pokemon", "friends", "meat", "pokegif"]
     compiledTemplates = []
 
     constructor () {
@@ -19,7 +19,7 @@ class Renderer {
             let myHTML = template.template(data)
             let container = $(`.${template.name}-container`)
             container.empty()
-            container.append(myHTML)            
+            container.append(myHTML)
         }
     }
     

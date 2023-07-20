@@ -15,7 +15,8 @@
 <body>
     <div class="container">	
         <div class="user-container"></div>	
-        <div class="quote-container"></div>	
+        <div class="quote-container"></div>
+        <div class="pokegif-container"></div>
         <div class="content-container">	
             <div class="pokemon-container"></div>	
             <div class="meat-container"></div>	
@@ -51,8 +52,12 @@
 
     <!-- POKEMON -->
     <script id="pokemon-template" type="text/x-handlebars-template">
-        <img src="{{pokemon.image}}" class="pokemon-image">
-        <p class="pokemon-text">Favorite pokemon: {{properCase pokemon.name}}</p>
+        <img src="{{pokemon.image}}" id="pokemon-image">
+        <div class="pokemon-text">Favorite pokemon: {{properCase pokemon.name}}</div>
+    </script>
+
+    <script id="pokegif-template" type="text/x-handlebars-template">
+        <iframe src="{{pokemon.giffile}}"></iframe>
     </script>
 
     <!-- FRIENDS -->
