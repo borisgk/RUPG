@@ -8,6 +8,9 @@ class APIManager {
         this.data.pokemon = new Object
 
         this.giphyAPIKey = "PU0XtDcjYCqbvG5RWWLrLxDmwasWXxiZ"
+
+        // testing an error
+        // this.giphyAPIKey = ""
     }
 
     callAPIs() {
@@ -78,19 +81,24 @@ class APIManager {
                 this.data.pokemon.image = values[2].sprites.front_default
                 this.data.pokemon.name = values[2].name
 
-                // pokemon gif
-
-                //this.data.pokemon.gifURL = "https://giphy.com/embed/nrsTrLkdflYn6rqM1L"
-
                 // meat
                 this.data.meat = values[3][0]
 
                 return this.getPokemonGif()
 
             })
-            
+
             .then((values) => {
                 this.data.pokemon.giffile = values.data[0].embed_url
             })
+
+            .catch((error) => {
+                // using default gif, no one cares
+                this.data.pokemon.giffile = "https://giphy.com/embed/nrsTrLkdflYn6rqM1L"
+                console.log(error)
+            })
+            
+
+            
     }
 }

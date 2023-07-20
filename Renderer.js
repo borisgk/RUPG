@@ -1,4 +1,3 @@
-
 class Renderer {
 
     renderTemplates = ["user", "quote", "pokemon", "friends", "meat", "pokegif"]

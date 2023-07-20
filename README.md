@@ -8,3 +8,5 @@ TODO:
    -- DONE! 
 
 2. Implement save and load with local storage.
+
+   -- NOT DONE
